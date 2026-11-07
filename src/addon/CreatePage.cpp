@@ -185,14 +185,19 @@ namespace wc::ui {
         ImGui::AlignTextToFramePadding();
         Text(T("your local time, also tomorrow 21:30 or 2026-12-24 19:00"), Palette::Muted);
 
+        // the lengths the form offers, and the one an event that is changed has when it is not one of them
+        std::vector<int> minutes = EventRules::Durations;
+        if (m_draft.durationMinutes > 0 && std::find(minutes.begin(), minutes.end(), m_draft.durationMinutes) == minutes.end()) {
+            minutes.insert(std::upper_bound(minutes.begin(), minutes.end(), m_draft.durationMinutes), m_draft.durationMinutes);
+        }
         std::vector<std::string> lengths;
         int length = 0;
-        for (size_t i = 0; i < EventRules::Durations.size(); ++i) {
-            lengths.push_back(EventRules::DurationLabel(EventRules::Durations[i]));
-            if (EventRules::Durations[i] == m_draft.durationMinutes) length = static_cast<int>(i);
+        for (size_t i = 0; i < minutes.size(); ++i) {
+            lengths.push_back(EventRules::DurationLabel(minutes[i]));
+            if (minutes[i] == m_draft.durationMinutes) length = static_cast<int>(i);
         }
         FormLabel(T("Length"), LabelWidth());
-        if (Combo("##length", lengths, length, S(140))) m_draft.durationMinutes = EventRules::Durations[static_cast<size_t>(length)];
+        if (Combo("##length", lengths, length, S(140))) m_draft.durationMinutes = minutes[static_cast<size_t>(length)];
 
         if (guild && !editing) {
             FormLabel(T("Repeat"), LabelWidth());

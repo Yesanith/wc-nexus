@@ -208,6 +208,7 @@
  "That region cannot be used.": "该地区不可用。",
  "That role cannot be used.": "该角色不可用。",
  "That role is full.": "该角色已满。",
+ "That was a lot of times in a short while. Wait a little and try again.": "短时间内操作次数过多，请稍后再试。",
  "The Discord invite has to look like https://discord.gg/abc or https://discord.com/invite/abc.": "Discord 邀请链接必须类似 https://discord.gg/abc 或 https://discord.com/invite/abc。",
  "The contact can be 120 characters at most.": "联系方式最多 120 个字符。",
  "The description can be 2000 characters at most.": "介绍最多 2000 个字符。",

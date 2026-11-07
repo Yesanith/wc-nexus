@@ -70,12 +70,8 @@ namespace wc {
         d.region = e.region.empty() ? "all" : e.region;
         d.mapText = e.mapId ? std::to_string(*e.mapId) : "";
         d.whenText = Clock::Typed(e.startAt);
-        // the length nearest to the one of the event, as the form offers lengths to choose from
-        int best = EventRules::Durations.front();
-        for (int x : EventRules::Durations) {
-            if (std::abs(x - e.durationMinutes) < std::abs(best - e.durationMinutes)) best = x;
-        }
-        d.durationMinutes = best;
+        // the length the event has, also one the form does not offer: changing the title is not changing the length
+        if (e.durationMinutes > 0) d.durationMinutes = e.durationMinutes;
         d.description = e.description;
         d.editId = e.id;
         d.editVersion = e.version;
@@ -192,6 +188,7 @@ namespace wc {
 
     Json RecruitDraft::ToJson() const {
         std::string invite = Trimmed(discordInvite);
+        if (!invite.empty() && invite.back() == '/') invite.pop_back();
         Json looking = Json::array(), langs = Json::array();
         for (const auto& t : RecruitRules::Tags) {
             if (lookingFor.count(t)) looking.push_back(t);
@@ -214,7 +211,8 @@ namespace wc {
     }
 
     bool IsDiscordInvite(const std::string& text) {
-        static const std::regex invite(R"(^https://(discord\.gg|discord\.com/invite)/[A-Za-z0-9-]+/?$)");
+        // what the database takes, and a slash at the end, which is taken off before it is sent
+        static const std::regex invite(R"(^https://(discord\.gg|discord\.com/invite)/[A-Za-z0-9-]{2,40}/?$)");
         return std::regex_match(text, invite);
     }
 }

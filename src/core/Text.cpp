@@ -123,7 +123,8 @@ namespace wc {
         for (size_t i = 0; i < pattern.size(); ++i) {
             if (pattern[i] == '{') {
                 size_t close = pattern.find('}', i);
-                if (close != std::string::npos && close > i + 1) {
+                // a number of a few digits: anything longer is text, and is not read as one (it would not fit)
+                if (close != std::string::npos && close > i + 1 && close - i - 1 <= 3) {
                     bool digits = true;
                     for (size_t j = i + 1; j < close; ++j) digits = digits && pattern[j] >= '0' && pattern[j] <= '9';
                     if (digits) {

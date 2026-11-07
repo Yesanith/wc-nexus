@@ -208,6 +208,7 @@
  "That region cannot be used.": "そのリージョンは使えません。",
  "That role cannot be used.": "そのロールは使えません。",
  "That role is full.": "そのロールは埋まっています。",
+ "That was a lot of times in a short while. Wait a little and try again.": "短時間に何度も操作しています。少し待ってからもう一度お試しください。",
  "The Discord invite has to look like https://discord.gg/abc or https://discord.com/invite/abc.": "Discord の招待リンクは https://discord.gg/abc または https://discord.com/invite/abc の形式にしてください。",
  "The contact can be 120 characters at most.": "連絡先は最大120文字です。",
  "The description can be 2000 characters at most.": "説明は最大2000文字です。",

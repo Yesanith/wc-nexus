@@ -82,6 +82,8 @@ namespace wc {
                 {"is_leader", "The leader needs no permission."},
                 {"42501", "You are not allowed to do that."},
                 {"bad_code", "That code is wrong or has run out. Get a new one in the app."},
+                // the limits per player on writes that are repeated: sign ups, reports, changes of an event, saves of a page
+                {"rate_limited", "That was a lot of times in a short while. Wait a little and try again."},
             };
             return known;
         }

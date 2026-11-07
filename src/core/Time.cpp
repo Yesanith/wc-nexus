@@ -80,9 +80,11 @@ namespace wc {
 
         bool StartsWith(const std::string& s, const char* word) { return s.compare(0, std::strlen(word), word) == 0; }
 
-        // the words for tomorrow and today, in English and in each language of the addon; letters outside ASCII are compared as written
+        // the words for tomorrow and today, in English and in each language of the addon; letters outside ASCII are compared as written.
+        // a word is matched by its start, so the whole of aujourd'hui (with either apostrophe) comes before the start of it
         const char* kTomorrow[] = {"tomorrow", "morgen", u8"mañana", "demain", u8"amanhã", "yarin", u8"yarın", "zavtra", u8"завтра", u8"明天", u8"明日"};
-        const char* kToday[] = {"today", "heute", "hoy", "aujourd", "hoje", "bugun", u8"bugün", "segodnya", u8"сегодня", u8"今天", u8"今日"};
+        const char* kToday[] = {"today", "heute", "hoy", "aujourd'hui", u8"aujourd’hui", "aujourd", "hoje", "bugun", u8"bugün", "segodnya", u8"сегодня",
+                                u8"今天", u8"今日"};
 
         std::string Two(int n) {
             char buf[8];

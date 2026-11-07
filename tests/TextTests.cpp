@@ -167,6 +167,7 @@ TEST_SUITE("languages") {
         CHECK(Format("{0} of {1}", {"a", "b"}) == "a of b");
         CHECK(Format("{1} then {0}", {"a", "b"}) == "b then a");
         CHECK(Format("{x} stays", {"a"}) == "{x} stays");
+        CHECK(Format("{99999999999999999999} stays", {"a"}) == "{99999999999999999999} stays");
         CHECK(Placeholders("{1} and {0}") == std::vector<std::string>{"{0}", "{1}"});
     }
 }

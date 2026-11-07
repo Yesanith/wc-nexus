@@ -254,17 +254,14 @@ namespace wc::ui {
         ImGui::TextDisabled("%s", T("A notice on the screen shortly before an event that you signed up for, or made, begins."));
         int minutes = m_settings.reminderMinutes;
         ImGui::SetNextItemWidth(220);
-        if (ImGui::SliderInt(T("Minutes before"), &minutes, 1, 60)) {
-            m_settings.reminderMinutes = minutes;
-            SaveSettings();
-        }
+        // a slider changes at each step of the drag: the value follows at once, the file is written once it is let go
+        if (ImGui::SliderInt(T("Minutes before"), &minutes, 1, 60)) m_settings.reminderMinutes = minutes;
+        if (ImGui::IsItemDeactivatedAfterEdit()) SaveSettings();
         ImGui::TextDisabled("%s", T("How long before the start the notice comes."));
         int refresh = m_settings.refreshMinutes;
         ImGui::SetNextItemWidth(220);
-        if (ImGui::SliderInt(T("Read the events every (minutes)"), &refresh, 1, 30)) {
-            m_settings.refreshMinutes = refresh;
-            SaveSettings();
-        }
+        if (ImGui::SliderInt(T("Read the events every (minutes)"), &refresh, 1, 30)) m_settings.refreshMinutes = refresh;
+        if (ImGui::IsItemDeactivatedAfterEdit()) SaveSettings();
         ImGui::TextDisabled("%s", T("How often the events are read again, for the window while it is open and for the reminders."));
         ImGui::TextDisabled("%s", T("A key that opens and closes the window of Wondrous Compass."));
     }

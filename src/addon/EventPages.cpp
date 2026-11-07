@@ -269,8 +269,10 @@ namespace wc::ui {
         m_reportReason = 0;
         m_reported = false;
         m_copied.clear();
-        m_rosterLoading = true;
         Show(Page::Details);
+        // who signed up to a public event is for its organizer only: the server refuses anybody else, which is no error to show them
+        m_rosterLoading = e.isGuild || e.mine;
+        if (!m_rosterLoading) return;
         auto api = m_api;
         std::string id = e.id;
         bool guild = e.isGuild;
@@ -426,8 +428,10 @@ namespace wc::ui {
             EndCard();
         }
 
-        // who is in
-        if (m_rosterLoading) {
+        // who is in: everybody of the guild sees it, of a public event the organizer
+        if (!e.isGuild && !e.mine) {
+            // nothing: the list is not theirs to see
+        } else if (m_rosterLoading) {
             Text(T("Loading..."), Palette::Muted);
         } else if (!m_rosterStatus.text.empty()) {
             m_rosterStatus.Draw();

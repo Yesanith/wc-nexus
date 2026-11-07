@@ -87,7 +87,8 @@ TEST_SUITE("time input") {
                                                {"today 23:00", 2026, 10, 9, 23, 0}, {"2026-12-24 19:00", 2026, 12, 24, 19, 0},
                                                {"10-12 20:00", 2026, 10, 12, 20, 0}, {"  20:00  ", 2026, 10, 9, 20, 0},
                                                {u8"yarın 21:30", 2026, 10, 10, 21, 30}, {u8"завтра 21:30", 2026, 10, 10, 21, 30},
-                                               {u8"明日 21:30", 2026, 10, 10, 21, 30}, {"morgen 21:30", 2026, 10, 10, 21, 30}}) {
+                                               {u8"明日 21:30", 2026, 10, 10, 21, 30}, {"morgen 21:30", 2026, 10, 10, 21, 30},
+                                               {"aujourd'hui 21:30", 2026, 10, 9, 21, 30}, {u8"aujourd\u2019hui 21:30", 2026, 10, 9, 21, 30}}) {
             CAPTURE(c.text);
             auto at = TimeInput::Parse(c.text, Now);
             REQUIRE(at.has_value());
@@ -301,6 +302,27 @@ TEST_SUITE("api") {
         Json roles = CodexApi::RolesJson({{"tank", 0}, {"dps", 4}});
         REQUIRE(roles.size() == 1);
         CHECK(roles[0]["role"] == "dps");
+    }
+
+    TEST_CASE("an event that is changed keeps its length, also one the form does not offer") {
+        EventInfo e;
+        e.id = "e1";
+        e.title = "Long meta";
+        e.startAt = At(2026, 10, 10, 20, 0);
+        e.durationMinutes = 150;
+        CHECK(EventDraft::FromEvent(e).durationMinutes == 150);
+        e.durationMinutes = 720;
+        CHECK(EventDraft::FromEvent(e).durationMinutes == 720);
+    }
+
+    TEST_CASE("a Discord invite is taken as the database takes it, a slash at the end left off") {
+        CHECK(IsDiscordInvite("https://discord.gg/abc"));
+        CHECK(IsDiscordInvite("https://discord.gg/abc/"));
+        CHECK_FALSE(IsDiscordInvite("https://discord.gg/a"));
+        CHECK_FALSE(IsDiscordInvite("https://discord.gg/" + std::string(41, 'a')));
+        RecruitDraft d;
+        d.discordInvite = "https://discord.com/invite/abc/";
+        CHECK(d.ToJson()["discord_invite"] == "https://discord.com/invite/abc");
     }
 
     TEST_CASE("a changed guild event is sent with the version it was read at") {
@@ -575,7 +597,7 @@ TEST_SUITE("event draft") {
         CHECK(d.IsEdit());
         CHECK_FALSE(d.IsGuild());
         CHECK(d.whenText == "2026-10-12 20:00");
-        CHECK(d.durationMinutes == 90);
+        CHECK(d.durationMinutes == 100);  // as the event has it, as the app keeps it
         CHECK(d.maxText == "5");
         CHECK(d.mapText == "50");
         CHECK(d.tags.count("meta") == 1);
