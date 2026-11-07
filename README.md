@@ -13,6 +13,8 @@ guild that is recruiting and write the page of your own.
 3. Put it in `Guild Wars 2\addons\` and start the game. Nexus lists it as **Wondrous Compass** in its addon library; load it there.
 4. Nexus keeps it up to date from the releases of this repository.
 
+The releases of this repository are the only official builds of the addon, see [TRADEMARKS.md](TRADEMARKS.md).
+
 The compass icon in the bar of Nexus opens the window. A key for it can be set in the keybinds of Nexus (**Wondrous Compass**), and Escape
 closes it.
 
@@ -109,5 +111,6 @@ The addon calls the `module_*` functions of the Wondrous Compass backend with it
 
 ## License
 
-MIT, see [LICENSE](LICENSE). The code in `third_party` is under its own licenses (MIT), in the files next to it. Guild Wars 2 and its
+MIT, see [LICENSE](LICENSE). The name Wondrous Compass, its logo and its icons are not under it: a fork is published under a
+name and with art of its own, and with a signature of its own in `GetAddonDef`, see [TRADEMARKS.md](TRADEMARKS.md). The code in `third_party` is under its own licenses (MIT), in the files next to it. Guild Wars 2 and its
 names and art are ArenaNet's.
