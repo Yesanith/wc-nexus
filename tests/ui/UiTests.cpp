@@ -268,6 +268,19 @@ int main() {
 
     try {
         {
+            // a call that throws what is not an exception of the standard library is a failure of the call, not the end of the game
+            Worker worker;
+            worker.Start();
+            std::string code;
+            worker.Do([]() { throw 42; }, nullptr, [&code](const ApiError& e) { code = e.code; });
+            for (int i = 0; i < 400 && code.empty(); ++i) {
+                std::this_thread::sleep_for(std::chrono::milliseconds(5));
+                worker.Drain();
+            }
+            worker.Stop();
+            Check(code == "unknown", "a call that throws anything at all fails as a call");
+        }
+        {
             // not linked: the window opens on the account page, and a code links it
             Harness h(false);
             h.out = out;

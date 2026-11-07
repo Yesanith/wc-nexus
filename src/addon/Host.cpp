@@ -97,7 +97,9 @@ namespace wc::Host {
         std::string Range(unsigned from, unsigned to) {
             std::string s;
             for (unsigned c = from; c <= to; ++c) {
-                if (c < 0x800) {
+                if (c < 0x80) {
+                    s += static_cast<char>(c);
+                } else if (c < 0x800) {
                     s += static_cast<char>(0xC0 | (c >> 6));
                     s += static_cast<char>(0x80 | (c & 0x3F));
                 } else {

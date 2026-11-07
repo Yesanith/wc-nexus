@@ -41,6 +41,12 @@ namespace wc {
                     return [fail, error]() {
                         if (fail) fail(error);
                     };
+                } catch (...) {
+                    // anything else would end the thread with std::terminate, and the game with it
+                    ApiError error("unknown", "the call failed", 0);
+                    return [fail, error]() {
+                        if (fail) fail(error);
+                    };
                 }
             });
         }
