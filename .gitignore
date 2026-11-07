@@ -1,0 +1,5 @@
+build*/
+tests/ui/out/
+tools/__pycache__/
+.vs/
+*.user

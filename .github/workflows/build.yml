@@ -1,0 +1,52 @@
+name: Build
+
+# a release, made by hand from the Actions tab: the version, and whether to publish it. Nexus finds the newest release of this repository and
+# offers the WondrousCompass.dll of it as the update
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version to build, for example 1.0.0
+        required: true
+      release:
+        description: Also publish it as a GitHub release
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: The version is three numbers
+        shell: pwsh
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          if ($env:VERSION -notmatch '^\d+\.\d+\.\d+$') { throw "the version has to be like 1.0.0, not $env:VERSION" }
+
+      - name: Build the addon
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          cmake -S . -B build -A x64 -DWC_VERSION="$env:VERSION"
+          cmake --build build --config Release
+
+      # a release never ships code whose tests fail
+      - name: Test
+        run: ./build/Release/wc_tests.exe
+
+      # kept only by the release, never as an artifact
+      - name: Publish release
+        if: inputs.release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ inputs.version }}
+          files: build/Release/WondrousCompass.dll
+          generate_release_notes: true
+          make_latest: true
+          fail_on_unmatched_files: true

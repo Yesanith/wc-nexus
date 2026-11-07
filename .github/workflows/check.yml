@@ -1,0 +1,57 @@
+name: Check
+
+# every push: the logic and the window are tested on Linux, and the addon is built on Windows as Nexus loads it. nothing is kept as an
+# artifact; a release is made by hand, from the Build workflow
+on:
+  push:
+    branches: ['**']
+  workflow_dispatch:
+
+concurrency:
+  group: check-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # the translations are json tables; the C++ made from them has to be the one they make
+      - name: The tables of the languages are up to date
+        run: python3 tools/build_lang.py --check
+
+      - name: Build
+        run: |
+          cmake -S . -B build -DWC_BUILD_ADDON=OFF -DCMAKE_BUILD_TYPE=Debug
+          cmake --build build -j
+
+      - name: Test the logic
+        run: ./build/wc_tests
+
+      # the window, drawn off the game with a pretend server, through every page
+      - name: Test the window
+        run: ./build/wc_ui_tests
+
+  addon:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build the addon
+        run: |
+          cmake -S . -B build -A x64
+          cmake --build build --config Release
+
+      - name: Test the logic on Windows
+        run: ./build/Release/wc_tests.exe
+
+      - name: The dll is the one Nexus loads
+        shell: pwsh
+        run: |
+          $dll = "build/Release/WondrousCompass.dll"
+          if (-not (Test-Path $dll)) { throw "the dll was not built" }
+          "{0:N0} bytes" -f (Get-Item $dll).Length

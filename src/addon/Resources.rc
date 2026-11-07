@@ -1,0 +1,4 @@
+#include "Resource.h"
+
+IDR_QUICK_ACCESS PNG "../../assets/quick-access.png"
+IDR_QUICK_ACCESS_HOVER PNG "../../assets/quick-access-hover.png"
