@@ -14,8 +14,10 @@ import sys
 FILES = {"German": "de", "Spanish": "es", "French": "fr", "Portuguese": "pt", "Turkish": "tr", "Russian": "ru", "Japanese": "ja", "Chinese": "zh"}
 STRING = r'"((?:[^"\\]|\\.)*)"'
 ENTRY = re.compile(r'\{\s*' + STRING + r'\s*,\s*' + STRING + r'\s*\}')
+# the module was called Tyria Codex Events, and is Wondrous Compass Events now: the addon is Wondrous Compass, either way
 RENAME = (("Tyria Codex Events", "Wondrous Compass"), ("Tyria-Codex-Events", "Wondrous-Compass"), ("Tyria Codex", "Wondrous Compass"),
-          ("Tyria-Codex", "Wondrous-Compass"))
+          ("Tyria-Codex", "Wondrous-Compass"), ("Wondrous Compass Events", "Wondrous Compass"),
+          ("Wondrous-Compass-Events", "Wondrous-Compass"))
 
 
 def unescape(s):
