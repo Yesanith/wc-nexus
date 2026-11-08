@@ -508,12 +508,12 @@ namespace wc::ui {
             },
             [this, show, id](std::optional<wc::RecruitPage> page) {
                 m_pageBusy = false;
-                if (page) m_recruitPage = std::move(page);
-                if (m_editing && m_editing->guildId == id) {
-                    m_editing->hasPage = true;
-                    m_editing->published = m_recruitPage && m_recruitPage->published;
-                }
                 m_foundAt = 0;
+                // another guild was opened meanwhile: this page is not its page
+                if (!m_editing || m_editing->guildId != id) return;
+                if (page) m_recruitPage = std::move(page);
+                m_editing->hasPage = true;
+                m_editing->published = m_recruitPage && m_recruitPage->published;
                 m_pageStatus.Set(show ? T("Saved, and shown to everybody.") : T("Saved."), Palette::Green);
                 LoadRecruiters();
             },
@@ -531,11 +531,12 @@ namespace wc::ui {
         std::string id = m_editing->guildId;
         m_worker.Run<std::optional<wc::RecruitPage>>(
             [api, id]() { return api->SetRecruitmentPublished(id, false); },
-            [this](std::optional<wc::RecruitPage> page) {
+            [this, id](std::optional<wc::RecruitPage> page) {
                 m_pageBusy = false;
-                if (page) m_recruitPage = std::move(page);
-                if (m_editing) m_editing->published = false;
                 m_foundAt = 0;
+                if (!m_editing || m_editing->guildId != id) return;
+                if (page) m_recruitPage = std::move(page);
+                m_editing->published = false;
                 m_pageStatus.Set(T("The page is a draft again and is no longer in the list."), Palette::Green);
             },
             [this](const ApiError& e) {
