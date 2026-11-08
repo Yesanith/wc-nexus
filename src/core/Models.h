@@ -29,8 +29,11 @@ namespace wc {
     struct GuildInfo {
         std::string guildId, name, tag, role, accountId, accountName;
 
-        /// leaders and officers may make events, a member may not
-        bool CanCreate() const { return role == "leader" || role == "officer"; }
+        /// what the server says: leaders and officers, and the members they let. missing from an older server
+        std::optional<bool> canCreate;
+
+        /// whether events can be made with this account; without word from the server, leaders and officers
+        bool CanCreate() const { return canCreate.value_or(role == "leader" || role == "officer"); }
         std::string Label() const { return tag.empty() ? name : name + " [" + tag + "]"; }
     };
 

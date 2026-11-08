@@ -77,7 +77,9 @@ namespace wc {
         }
         if (j.is_object() && j.contains("guilds") && j["guilds"].is_array()) {
             for (const auto& g : j["guilds"]) {
-                me.guilds.push_back({StrOr(g, "guild_id"), StrOr(g, "name"), StrOr(g, "tag"), StrOr(g, "role"), StrOr(g, "account_id"), StrOr(g, "account_name")});
+                GuildInfo info{StrOr(g, "guild_id"), StrOr(g, "name"), StrOr(g, "tag"), StrOr(g, "role"), StrOr(g, "account_id"), StrOr(g, "account_name")};
+                if (g.is_object() && g.contains("can_create") && g["can_create"].is_boolean()) info.canCreate = g["can_create"].get<bool>();
+                me.guilds.push_back(info);
             }
         }
         return me;

@@ -73,6 +73,17 @@ TEST_SUITE("guilds") {
             CHECK(g.CanCreate() == expected);
         }
     }
+
+    TEST_CASE("what the server says of making events decides") {
+        GuildInfo member;
+        member.role = "member";
+        member.canCreate = true;
+        CHECK(member.CanCreate());
+        GuildInfo officer;
+        officer.role = "officer";
+        officer.canCreate = false;
+        CHECK_FALSE(officer.CanCreate());
+    }
 }
 
 TEST_SUITE("time input") {
@@ -370,6 +381,12 @@ TEST_SUITE("parsing") {
         REQUIRE(me.guilds.size() == 1);
         CHECK(me.guilds[0].Label() == "Order [OR]");
         CHECK(me.guilds[0].CanCreate());
+
+        MeInfo let = MeInfo::Parse(Json::parse(R"({"guilds":[{"guild_id":"g1","role":"member","can_create":true},{"guild_id":"g2","role":"member","can_create":false},{"guild_id":"g3","role":"member"}]})"));
+        REQUIRE(let.guilds.size() == 3);
+        CHECK(let.guilds[0].CanCreate());
+        CHECK_FALSE(let.guilds[1].CanCreate());
+        CHECK_FALSE(let.guilds[2].CanCreate());
     }
 
     TEST_CASE("reads a public event") {
