@@ -81,7 +81,7 @@
  "Link a game account in the app first.": "Önce uygulamada bir oyun hesabı bağla.",
  "Link with a code": "Kodla bağla",
  "Linked as {0}.": "{0} olarak bağlandı.",
- "Linked as {0}.\n\nGame accounts: {1}\nGuilds: {2}\n\nOnly leaders and officers can make guild events.": "{0} olarak bağlandı.\n\nOyun hesapları: {1}\nLoncalar: {2}\n\nLonca etkinliğini yalnızca liderler ve subaylar oluşturabilir.",
+ "Linked as {0}.\n\nGame accounts: {1}\nGuilds: {2}\n\nGuild events are made by the leader, the officers and the members they let.": "{0} olarak bağlandı.\n\nOyun hesapları: {1}\nLoncalar: {2}\n\nLonca etkinliklerini lider, subaylar ve onların izin verdiği üyeler oluşturur.",
  "Linked, but the token could not be saved. You will have to link again next time.": "Bağlandı, ama jeton kaydedilemedi. Bir dahaki sefere yeniden bağlaman gerekecek.",
  "Linked.": "Bağlandı.",
  "Linking...": "Bağlanıyor...",
@@ -312,5 +312,6 @@
  "{0} min": "{0} dk",
  "{0} of {1} picked (the language is the fifth tag of the post in the forum)": "{0} / {1} seçildi (dil, forumdaki gönderinin beşinci etiketidir)",
  "{0} starts in {1} minute": "{0} {1} dakika sonra başlıyor",
- "{0} starts in {1} minutes": "{0} {1} dakika sonra başlıyor"
+ "{0} starts in {1} minutes": "{0} {1} dakika sonra başlıyor",
+ "can make events": "etkinlik açabilir"
 }

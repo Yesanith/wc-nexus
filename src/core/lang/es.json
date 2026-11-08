@@ -81,7 +81,7 @@
  "Link a game account in the app first.": "Vincula primero una cuenta del juego en la app.",
  "Link with a code": "Vincular con un código",
  "Linked as {0}.": "Vinculado como {0}.",
- "Linked as {0}.\n\nGame accounts: {1}\nGuilds: {2}\n\nOnly leaders and officers can make guild events.": "Vinculado como {0}.\n\nCuentas del juego: {1}\nGremios: {2}\n\nSolo los líderes y oficiales pueden crear eventos de gremio.",
+ "Linked as {0}.\n\nGame accounts: {1}\nGuilds: {2}\n\nGuild events are made by the leader, the officers and the members they let.": "Vinculado como {0}.\n\nCuentas del juego: {1}\nGremios: {2}\n\nLos eventos de gremio los crean el líder, los oficiales y los miembros a los que ellos lo permitan.",
  "Linked, but the token could not be saved. You will have to link again next time.": "Vinculado, pero no se pudo guardar el token. Tendrás que vincular de nuevo la próxima vez.",
  "Linked.": "Vinculado.",
  "Linking...": "Vinculando...",
@@ -312,5 +312,6 @@
  "{0} min": "{0} min",
  "{0} of {1} picked (the language is the fifth tag of the post in the forum)": "{0} de {1} elegidos (el idioma es la quinta etiqueta de la publicación en el foro)",
  "{0} starts in {1} minute": "{0} empieza en {1} minuto",
- "{0} starts in {1} minutes": "{0} empieza en {1} minutos"
+ "{0} starts in {1} minutes": "{0} empieza en {1} minutos",
+ "can make events": "puede crear eventos"
 }

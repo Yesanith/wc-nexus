@@ -27,12 +27,16 @@ namespace wc::ui {
         } else {
             std::string guilds, accounts;
             for (const auto& g : m_me->guilds) {
-                guilds += (guilds.empty() ? "" : ", ") + g.Label() + (g.CanCreate() ? " (" + EventRules::RankLabel(g.role) + ")" : "");
+                // leaders and officers by their rank, a member let make events says so
+                std::string note;
+                if (g.role == "leader" || g.role == "officer") note = EventRules::RankLabel(g.role);
+                else if (g.CanCreate()) note = T("can make events");
+                guilds += (guilds.empty() ? "" : ", ") + g.Label() + (note.empty() ? "" : " (" + note + ")");
             }
             for (const auto& a : m_me->accounts) accounts += (accounts.empty() ? "" : ", ") + a.name;
             if (guilds.empty()) guilds = T("none");
             if (accounts.empty()) accounts = T("none");
-            Wrapped(T("Linked as {0}.\n\nGame accounts: {1}\nGuilds: {2}\n\nOnly leaders and officers can make guild events.", {m_me->name, accounts, guilds}),
+            Wrapped(T("Linked as {0}.\n\nGame accounts: {1}\nGuilds: {2}\n\nGuild events are made by the leader, the officers and the members they let.", {m_me->name, accounts, guilds}),
                     Palette::Text);
         }
         EndCard();

@@ -81,7 +81,7 @@
  "Link a game account in the app first.": "Сначала свяжите игровой аккаунт в приложении.",
  "Link with a code": "Связать с помощью кода",
  "Linked as {0}.": "Связано как {0}.",
- "Linked as {0}.\n\nGame accounts: {1}\nGuilds: {2}\n\nOnly leaders and officers can make guild events.": "Связано как {0}.\n\nИгровые аккаунты: {1}\nГильдии: {2}\n\nСобытия гильдии могут создавать только лидеры и офицеры.",
+ "Linked as {0}.\n\nGame accounts: {1}\nGuilds: {2}\n\nGuild events are made by the leader, the officers and the members they let.": "Связано как {0}.\n\nИгровые аккаунты: {1}\nГильдии: {2}\n\nСобытия гильдии создают лидер, офицеры и участники, которым они это разрешили.",
  "Linked, but the token could not be saved. You will have to link again next time.": "Связано, но токен не удалось сохранить. В следующий раз придётся связать заново.",
  "Linked.": "Связано.",
  "Linking...": "Связывание...",
@@ -312,5 +312,6 @@
  "{0} min": "{0} мин",
  "{0} of {1} picked (the language is the fifth tag of the post in the forum)": "Выбрано {0} из {1} (язык — пятый тег записи на форуме)",
  "{0} starts in {1} minute": "{0} начнётся через {1} минуту",
- "{0} starts in {1} minutes": "{0} начнётся через {1} мин."
+ "{0} starts in {1} minutes": "{0} начнётся через {1} мин.",
+ "can make events": "может создавать события"
 }

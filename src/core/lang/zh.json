@@ -81,7 +81,7 @@
  "Link a game account in the app first.": "请先在应用中关联一个游戏账号。",
  "Link with a code": "用代码关联",
  "Linked as {0}.": "已关联为 {0}。",
- "Linked as {0}.\n\nGame accounts: {1}\nGuilds: {2}\n\nOnly leaders and officers can make guild events.": "已关联为 {0}。\n\n游戏账号：{1}\n公会：{2}\n\n只有会长和干部可以创建公会活动。",
+ "Linked as {0}.\n\nGame accounts: {1}\nGuilds: {2}\n\nGuild events are made by the leader, the officers and the members they let.": "已关联为 {0}。\n\n游戏账号：{1}\n公会：{2}\n\n公会活动由会长、干部以及他们允许的成员创建。",
  "Linked, but the token could not be saved. You will have to link again next time.": "已关联，但令牌无法保存。下次需要重新关联。",
  "Linked.": "已关联。",
  "Linking...": "正在关联……",
@@ -312,5 +312,6 @@
  "{0} min": "{0} 分钟",
  "{0} of {1} picked (the language is the fifth tag of the post in the forum)": "已选 {0} / {1}（语言是论坛帖子的第五个标签）",
  "{0} starts in {1} minute": "{0} 将在 {1} 分钟后开始",
- "{0} starts in {1} minutes": "{0} 将在 {1} 分钟后开始"
+ "{0} starts in {1} minutes": "{0} 将在 {1} 分钟后开始",
+ "can make events": "可创建活动"
 }

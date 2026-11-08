@@ -81,7 +81,7 @@
  "Link a game account in the app first.": "Lie d'abord un compte du jeu dans l'appli.",
  "Link with a code": "Lier avec un code",
  "Linked as {0}.": "Lié en tant que {0}.",
- "Linked as {0}.\n\nGame accounts: {1}\nGuilds: {2}\n\nOnly leaders and officers can make guild events.": "Lié en tant que {0}.\n\nComptes du jeu : {1}\nGuildes : {2}\n\nSeuls les chefs et les officiers peuvent créer des événements de guilde.",
+ "Linked as {0}.\n\nGame accounts: {1}\nGuilds: {2}\n\nGuild events are made by the leader, the officers and the members they let.": "Lié en tant que {0}.\n\nComptes du jeu : {1}\nGuildes : {2}\n\nLes événements de guilde sont créés par le chef, les officiers et les membres qu'ils autorisent.",
  "Linked, but the token could not be saved. You will have to link again next time.": "Lié, mais le jeton n'a pas pu être enregistré. Tu devras lier à nouveau la prochaine fois.",
  "Linked.": "Lié.",
  "Linking...": "Liaison...",
@@ -312,5 +312,6 @@
  "{0} min": "{0} min",
  "{0} of {1} picked (the language is the fifth tag of the post in the forum)": "{0} sur {1} choisis (la langue est le cinquième tag du message dans le forum)",
  "{0} starts in {1} minute": "{0} commence dans {1} minute",
- "{0} starts in {1} minutes": "{0} commence dans {1} minutes"
+ "{0} starts in {1} minutes": "{0} commence dans {1} minutes",
+ "can make events": "peut créer des événements"
 }

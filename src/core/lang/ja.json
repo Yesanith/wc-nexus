@@ -81,7 +81,7 @@
  "Link a game account in the app first.": "先にアプリでゲームアカウントを連携してください。",
  "Link with a code": "コードで連携",
  "Linked as {0}.": "{0} として連携しました。",
- "Linked as {0}.\n\nGame accounts: {1}\nGuilds: {2}\n\nOnly leaders and officers can make guild events.": "{0} として連携しました。\n\nゲームアカウント：{1}\nギルド：{2}\n\nギルドイベントを作成できるのはリーダーとオフィサーだけです。",
+ "Linked as {0}.\n\nGame accounts: {1}\nGuilds: {2}\n\nGuild events are made by the leader, the officers and the members they let.": "{0} として連携しました。\n\nゲームアカウント：{1}\nギルド：{2}\n\nギルドイベントを作成できるのは、リーダー、オフィサー、そして彼らが許可したメンバーです。",
  "Linked, but the token could not be saved. You will have to link again next time.": "連携しましたが、トークンを保存できませんでした。次回もう一度連携が必要です。",
  "Linked.": "連携済み。",
  "Linking...": "連携中…",
@@ -312,5 +312,6 @@
  "{0} min": "{0}分",
  "{0} of {1} picked (the language is the fifth tag of the post in the forum)": "{0} / {1} 選択中（言語はフォーラム投稿の5つ目のタグです）",
  "{0} starts in {1} minute": "{0} は{1}分後に始まります",
- "{0} starts in {1} minutes": "{0} は{1}分後に始まります"
+ "{0} starts in {1} minutes": "{0} は{1}分後に始まります",
+ "can make events": "イベント作成可"
 }
