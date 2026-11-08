@@ -22,7 +22,7 @@ closes it.
 
 The addon cannot sign in with Discord, so you link it once with a code:
 
-1. In the Wondrous Compass app or website, sign in and open **Settings > Blish HUD**, then press **Get a code**. The same code links the
+1. In the Wondrous Compass app or website, sign in and open **Settings > Blish HUD · Nexus**, then press **Get a code**. The same code links the
    Blish HUD module and this addon.
 2. In the game, open the window, go to **Account**, type the code and press **Link**.
 

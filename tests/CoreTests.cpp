@@ -611,6 +611,12 @@ TEST_SUITE("event draft") {
         CHECK(u.zone == "UTC");
         CHECK(u.timeOfDay == "20:00");
     }
+
+    TEST_CASE("the zones of Mexico are known by the names Windows gives them") {
+        CHECK(TimeZones::ToIana("Central Standard Time (Mexico)") == "America/Mexico_City");
+        CHECK(TimeZones::ToIana("Pacific Standard Time (Mexico)") == "America/Tijuana");
+        CHECK(TimeZones::ToIana("Mexico Standard Time") == "");
+    }
 }
 
 TEST_SUITE("recruit draft") {

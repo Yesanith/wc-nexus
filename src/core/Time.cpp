@@ -314,7 +314,10 @@ namespace wc {
                 {"argentina standard time", "America/Argentina/Buenos_Aires"},
                 {"sa pacific standard time", "America/Bogota"},
                 {"central america standard time", "America/Guatemala"},
-                {"mexico standard time", "America/Mexico_City"},
+                // Windows names the zones of Mexico by the zone they are like, with (Mexico) after it
+                {"central standard time (mexico)", "America/Mexico_City"},
+                {"mountain standard time (mexico)", "America/Mazatlan"},
+                {"pacific standard time (mexico)", "America/Tijuana"},
             };
             auto it = map.find(Lower(windowsId));
             return it == map.end() ? "" : it->second;
